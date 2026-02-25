@@ -1,0 +1,940 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ФРАУ АННА — немецкий для жизни в Германии</title>
+  <meta name="description" content="Немецкий для жизни в Германии: детям — игры и песни, взрослым — работа и переезд. Deutsch ohne Stress." />
+
+  <!-- Google Font: Rubik -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#F4E7DB;
+      --text:#3A2E2A;
+      --accent:#F59E0B;
+      --coffee:#8B5E3C;
+      --card:#FFF7EF;
+      --card2:#FFFFFF;
+      --stroke: rgba(58,46,42,.14);
+      --shadow: 0 18px 40px rgba(58,46,42,.12);
+      --shadow2: 0 10px 22px rgba(58,46,42,.10);
+      --radius: 22px;
+      --radius2: 16px;
+      --max: 1120px;
+
+      /* typography scale */
+      --base: 17px;
+      --small: 14.5px;
+      --micro: 13.5px;
+    }
+
+    *{ box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
+    body{
+      margin:0;
+      font-family: "Rubik", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x:hidden;
+      font-size: var(--base);
+    }
+
+    /* Subtle background texture */
+    .bg-glow{
+      position:fixed; inset:-20vh -20vw;
+      background:
+        radial-gradient(60vmax 60vmax at 12% 8%, rgba(245,158,11,.20), transparent 55%),
+        radial-gradient(55vmax 55vmax at 92% 22%, rgba(139,94,60,.16), transparent 55%),
+        radial-gradient(65vmax 65vmax at 40% 92%, rgba(245,158,11,.14), transparent 55%);
+      filter: blur(18px);
+      z-index:-2;
+      pointer-events:none;
+      animation: float 10s ease-in-out infinite alternate;
+    }
+    @keyframes float{
+      from{ transform: translate3d(0,0,0) scale(1); }
+      to{ transform: translate3d(1.2%, -1.2%, 0) scale(1.02); }
+    }
+
+    .wrap{ width:min(var(--max), calc(100% - 40px)); margin:0 auto; }
+
+    /* Header */
+    header{
+      position:sticky;
+      top:0;
+      z-index:50;
+      backdrop-filter: blur(12px);
+      background: rgba(244,231,219,.72);
+      border-bottom: 1px solid rgba(58,46,42,.10);
+    }
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      padding:14px 0;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px;
+      min-width: 220px;
+      text-decoration:none;
+      color:var(--text);
+    }
+    .brand img{
+      width:42px; height:42px;
+      border-radius: 14px;
+      object-fit: cover;
+      box-shadow: 0 10px 18px rgba(58,46,42,.12);
+      border: 1px solid rgba(58,46,42,.10);
+      background: #fff;
+    }
+    .brand .t1{
+      font-weight:800;
+      letter-spacing: .2px;
+      line-height: 1.05;
+    }
+    .brand .t2{
+      font-size: 15px;
+      opacity:.92;
+      margin-top:3px;
+      font-weight: 700;
+      letter-spacing: .1px;
+    }
+
+    nav ul{ list-style:none; margin:0; padding:0; display:flex; gap:6px; align-items:center; flex-wrap:wrap; justify-content:flex-end; }
+    nav a{
+      display:inline-flex;
+      align-items:center;
+      padding:10px 12px;
+      border-radius: 999px;
+      text-decoration:none;
+      color:var(--text);
+      font-weight:600;
+      font-size:15px;
+      opacity:.92;
+      transition: transform .18s ease, background .18s ease, box-shadow .18s ease, opacity .18s ease;
+    }
+    nav a:hover{
+      background: rgba(245,158,11,.14);
+      transform: translateY(-1px);
+      box-shadow: 0 10px 18px rgba(58,46,42,.08);
+      opacity:1;
+    }
+    .nav-cta{
+      display:flex; align-items:center; gap:10px;
+    }
+
+    /* Buttons */
+    .btn{
+      border:0;
+      cursor:pointer;
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:14px 16px;
+      border-radius: 16px;
+      font-weight:800;
+      letter-spacing:.2px;
+      transition: transform .16s ease, box-shadow .16s ease, filter .16s ease, background .16s ease, border-color .16s ease;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .btn:active{ transform: translateY(1px); }
+    .btn-primary{
+      background: linear-gradient(180deg, rgba(245,158,11,1) 0%, rgba(245,158,11,.92) 100%);
+      color: #2a1d16;
+      box-shadow: 0 18px 34px rgba(245,158,11,.26), 0 12px 20px rgba(58,46,42,.10);
+      border: 1px solid rgba(58,46,42,.10);
+    }
+    .btn-primary:hover{ filter: saturate(1.05) brightness(1.02); transform: translateY(-1px); }
+    .btn-soft{
+      background: rgba(255,255,255,.78);
+      color: var(--text);
+      border: 1px solid rgba(58,46,42,.14);
+      box-shadow: 0 12px 22px rgba(58,46,42,.08);
+    }
+    .btn-soft:hover{ transform: translateY(-1px); box-shadow: 0 18px 30px rgba(58,46,42,.10); }
+    .btn-ghost{
+      background: transparent;
+      color: var(--text);
+      border: 1px dashed rgba(58,46,42,.28);
+      padding: 12px 14px;
+      border-radius: 999px;
+      font-weight:700;
+      opacity:.92;
+    }
+    .btn-ghost:hover{ background: rgba(245,158,11,.12); opacity:1; transform: translateY(-1px); }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(245,158,11,.16);
+      border: 1px solid rgba(245,158,11,.32);
+      color: var(--text);
+      font-weight:700;
+      font-size: 15px;
+      width: fit-content;
+    }
+    .dot{ width:10px; height:10px; border-radius:999px; background: var(--accent); box-shadow: 0 0 0 6px rgba(245,158,11,.18); }
+
+    /* Sections */
+    section{ padding: 54px 0; }
+    .card{
+      background: rgba(255,255,255,.62);
+      border: 1px solid rgba(58,46,42,.12);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+
+    /* Hero */
+    .hero{
+      padding: 42px 0 22px;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.2fr .9fr;
+      gap: 24px;
+      align-items:stretch;
+    }
+    .hero-left{
+      padding: 28px;
+      position:relative;
+    }
+    .hero-left:before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background:
+        radial-gradient(700px 320px at 10% 0%, rgba(245,158,11,.22), transparent 60%),
+        radial-gradient(520px 260px at 90% 50%, rgba(139,94,60,.14), transparent 60%);
+      z-index:0;
+      pointer-events:none;
+    }
+    .hero-left > *{ position:relative; z-index:1; }
+
+    h1{
+      margin: 14px 0 12px;
+      font-size: clamp(32px, 3.4vw, 50px);
+      line-height: 1.08;
+      letter-spacing: -0.5px;
+    }
+    .lead{
+      margin: 0 0 18px;
+      font-size: 18px;
+      line-height: 1.6;
+      opacity:.9;
+      max-width: 60ch;
+    }
+    .tags{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin: 10px 0 18px;
+    }
+    .tag{
+      padding: 9px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.72);
+      border: 1px solid rgba(58,46,42,.12);
+      font-weight:700;
+      font-size: 14px;
+      box-shadow: 0 10px 16px rgba(58,46,42,.07);
+    }
+    .hero-actions{
+      display:flex; flex-wrap:wrap; gap:12px;
+      margin-top: 16px;
+    }
+    .hero-note{
+      margin-top: 14px;
+      font-size: 13px;
+      opacity:.78;
+    }
+
+    .hero-right{
+      padding: 18px;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+    .photo{
+      border-radius: var(--radius);
+      overflow:hidden;
+      border: 1px solid rgba(58,46,42,.12);
+      background: rgba(255,255,255,.55);
+      box-shadow: var(--shadow2);
+      flex: 1;
+      min-height: 340px;
+      position:relative;
+    }
+    .photo img{
+      width:100%;
+      height:100%;
+      object-fit: cover;
+      transform: scale(1.03);
+      transition: transform .6s ease;
+      display:block;
+    }
+    .photo:hover img{ transform: scale(1.07); }
+    .photo-badge{
+      position:absolute;
+      left: 14px;
+      bottom: 14px;
+      right: 14px;
+      display:flex;
+      gap:10px;
+      align-items:center;
+      justify-content:space-between;
+      padding: 12px 14px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.72);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(58,46,42,.12);
+      box-shadow: 0 18px 30px rgba(58,46,42,.12);
+    }
+    .photo-badge .b1{ font-weight:900; }
+    .photo-badge .b2{ font-size: 12px; opacity:.8; margin-top:2px; }
+    .mini-cta{ display:flex; gap:10px; flex-wrap:wrap; }
+
+    /* Content blocks */
+    .block-head{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:18px;
+      margin-bottom: 16px;
+    }
+    .block-head h2{
+      margin:0;
+      font-size: 26px;
+      letter-spacing:-.3px;
+    }
+    .sub{
+      margin: 6px 0 0;
+      opacity:.82;
+      line-height:1.55;
+      max-width: 70ch;
+    }
+
+    .grid-2{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .panel{
+      background: rgba(255,255,255,.70);
+      border: 1px solid rgba(58,46,42,.12);
+      border-radius: var(--radius);
+      padding: 18px;
+      box-shadow: 0 12px 22px rgba(58,46,42,.08);
+      position:relative;
+      overflow:hidden;
+    }
+    .panel:before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background:
+        radial-gradient(360px 220px at 0% 0%, rgba(245,158,11,.16), transparent 60%),
+        radial-gradient(360px 220px at 100% 100%, rgba(139,94,60,.12), transparent 60%);
+      z-index:0;
+      pointer-events:none;
+    }
+    .panel > *{ position:relative; z-index:1; }
+
+    .panel h3{
+      margin: 0 0 10px;
+      font-size: 18px;
+      letter-spacing:-.2px;
+    }
+    .list{
+      margin:0;
+      padding-left: 18px;
+      line-height: 1.65;
+      opacity:.9;
+    }
+    .actions-row{ display:flex; gap:10px; flex-wrap:wrap; margin-top:14px; }
+
+    /* Reviews */
+    .tabs{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+      margin: 10px 0 16px;
+    }
+    .tab{
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(58,46,42,.14);
+      background: rgba(255,255,255,.62);
+      cursor:pointer;
+      font-weight:800;
+      transition: transform .14s ease, background .14s ease, box-shadow .14s ease;
+      user-select:none;
+    }
+    .tab:hover{ transform: translateY(-1px); box-shadow: 0 14px 22px rgba(58,46,42,.10); }
+    .tab.active{
+      background: rgba(245,158,11,.18);
+      border-color: rgba(245,158,11,.36);
+      box-shadow: 0 16px 28px rgba(245,158,11,.16);
+    }
+    .reviews{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    .quote{
+      background: rgba(255,255,255,.76);
+      border: 1px solid rgba(58,46,42,.12);
+      border-radius: var(--radius);
+      padding: 16px;
+      box-shadow: 0 12px 20px rgba(58,46,42,.08);
+      min-height: 160px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+    .quote .q{
+      margin:0;
+      line-height: 1.6;
+      opacity:.92;
+    }
+    .quote .meta{
+      margin-top:auto;
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      font-size: 13px;
+      opacity:.78;
+      font-weight:700;
+    }
+
+    /* About */
+    .about{
+      display:grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 16px;
+      align-items:stretch;
+    }
+    .about .big{
+      font-size: 18px;
+      line-height: 1.7;
+      margin: 0;
+      opacity:.92;
+    }
+    .mini-cards{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 14px;
+    }
+    .mini{
+      background: rgba(255,255,255,.70);
+      border: 1px solid rgba(58,46,42,.12);
+      border-radius: var(--radius2);
+      padding: 14px;
+      box-shadow: 0 10px 18px rgba(58,46,42,.07);
+    }
+    .mini .k{ font-weight:900; margin:0 0 6px; }
+    .mini .v{ margin:0; opacity:.82; line-height:1.5; }
+
+    /* Contacts */
+    .contacts{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 16px;
+      align-items:stretch;
+    }
+    .contact-list{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 12px;
+    }
+    .contact{
+      background: rgba(255,255,255,.72);
+      border: 1px solid rgba(58,46,42,.12);
+      border-radius: var(--radius2);
+      padding: 14px;
+      box-shadow: 0 10px 18px rgba(58,46,42,.07);
+    }
+    .contact .label{ font-weight:900; margin:0 0 6px; }
+    .contact a{
+      color: var(--text);
+      font-weight:700;
+      text-decoration:none;
+      opacity:.9;
+      word-break: break-word;
+    }
+    .contact a:hover{ text-decoration: underline; opacity:1; }
+
+    footer{
+      padding: 20px 0 38px;
+      opacity:.78;
+      font-size: 13px;
+    }
+
+    /* Reveal animation */
+    .reveal{
+      opacity:0;
+      transform: translateY(10px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+    .reveal.show{
+      opacity:1;
+      transform: translateY(0);
+    }
+
+    /* Mobile */
+    .menu-btn{
+      display:none;
+      border:1px solid rgba(58,46,42,.14);
+      background: rgba(255,255,255,.62);
+      border-radius: 14px;
+      padding: 10px 12px;
+      font-weight:900;
+      cursor:pointer;
+    }
+    @media (max-width: 980px){
+      .hero-grid{ grid-template-columns: 1fr; }
+      .photo{ min-height: 320px; }
+      .reviews{ grid-template-columns: 1fr; }
+      .grid-2{ grid-template-columns: 1fr; }
+      .about{ grid-template-columns: 1fr; }
+      .contacts{ grid-template-columns: 1fr; }
+      .contact-list{ grid-template-columns: 1fr; }
+      nav ul{ display:none; }
+      .menu-btn{ display:inline-flex; }
+      nav.open ul{
+        display:flex;
+        flex-direction:column;
+        align-items:stretch;
+        gap:8px;
+        padding: 10px 0 16px;
+      }
+      nav.open a{ justify-content:center; }
+      .brand{ min-width:auto; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="bg-glow" aria-hidden="true"></div>
+
+  <!-- HEADER -->
+  <header>
+    <div class="wrap">
+      <div class="nav">
+        <a class="brand" href="#top" aria-label="На главную">
+          <img src="logo.png" alt="Frau Anna logo">
+          <div>
+            <div class="t1">FRAU ANNA</div>
+            <div class="t2">НЕМЕЦКИЙ ДЛЯ ЖИЗНИ В ГЕРМАНИИ и АВСТРИИ</div>
+          </div>
+        </a>
+
+        <div class="nav-cta">
+          <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="siteNav">Меню</button>
+        </div>
+
+        <nav id="siteNav" aria-label="Навигация">
+          <ul>
+            <li><a href="#kids">Детям</a></li>
+            <li><a href="#adults">Взрослым</a></li>
+            <li><a href="#reviews">Отзывы</a></li>
+            <li><a href="#about">Обо мне</a></li>
+            <li><a href="#contacts">Контакты</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <main id="top" class="hero">
+    <div class="wrap">
+      <div class="card reveal">
+        <div class="hero-grid">
+          <div class="hero-left">
+            <span class="pill"><span class="dot"></span> немецкий для жизни в Германии</span>
+            <h1>Дети — играют и запоминают. Взрослые — говорят и устраиваются на работу.</h1>
+            <p class="lead">
+              Выбирайте направление и попадите туда, где всё уже разложено по полочкам:
+              игры и песни для детей — или работа/переезд для взрослых без стресса.
+            </p>
+
+            <div class="tags" aria-label="Ключевые темы">
+              <span class="tag">дети</span>
+              <span class="tag">взрослые</span>
+              <span class="tag">работа</span>
+              <span class="tag">переезд</span>
+              <span class="tag">резюме</span>
+              <span class="tag">разговорная практика</span>
+            </div>
+
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="https://frauanna.ru" target="_blank" rel="noopener">
+                Немецкий для детей → игры
+                <span aria-hidden="true">🧡</span>
+              </a>
+              <a class="btn btn-soft" href="#adults">
+                Взрослым: работа / переезд
+                <span aria-hidden="true">☕</span>
+              </a>
+              <a class="btn btn-ghost" href="#contacts">Связаться</a>
+            </div>
+
+            <div class="hero-note">
+             
+            </div>
+          </div>
+
+          <div class="hero-right">
+            <div class="photo" aria-label="Фото">
+              <img src="foto.jpg" alt="Frau Anna">
+              <div class="photo-badge">
+                <div>
+                  <div class="b1">Deutsch ohne Stress</div>
+                  <div class="b2">и разговорный клуб «Deutsch mit Kaffee»</div>
+                </div>
+                <div class="mini-cta">
+                  <a class="btn btn-primary" style="padding:10px 12px; border-radius:14px;" href="#reviews">Отзывы</a>
+                  <a class="btn btn-soft" style="padding:10px 12px; border-radius:14px;" href="#contacts">Контакты</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> <!-- hero-grid -->
+      </div>
+    </div>
+  </main>
+
+  <!-- KIDS -->
+  <section id="kids">
+    <div class="wrap">
+      <div class="block-head reveal">
+        <div>
+          <h2>Детям</h2>
+          <p class="sub">Игровой немецкий: коротко, ярко, с песнями и заданиями — чтобы ребёнок не “учил”, а играл, повторял и говорил.</p>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="panel reveal">
+          <h3>Как я учу</h3>
+          <ul class="list">
+            <li>Мини-словарь → сразу в игру (без «учим списки»).</li>
+            <li>Повторение через действие: движение, карточки, задания, песенки, разговорные ситуации.</li>
+            <li>Чёткие темы, понятная структура и методические рекомендации для родителей.</li>
+          </ul>
+          <div class="actions-row">
+            <a class="btn btn-primary" href="https://frauanna.ru" target="_blank" rel="noopener">Перейти к играм</a>
+            <a class="btn btn-soft" href="https://frauanna.ru" target="_blank" rel="noopener">Уроки для детей</a>
+          </div>
+        </div>
+
+        <div class="panel reveal">
+          <h3>Что найдут родители</h3>
+          <ul class="list">
+            <li>Игры, песенки, комиксы, короткие занятия “на 5 минут”.</li>
+            <li>Материалы, которые легко распечатать или открыть на телефоне.</li>
+            <li>Идеи: как поддерживать немецкий дома без нервов.</li>
+          </ul>
+          <div class="actions-row">
+            <a class="btn btn-soft" href="#contacts">Задать вопрос</a>
+            <a class="btn btn-ghost" href="#reviews">Смотреть отзывы</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ADULTS -->
+  <section id="adults">
+    <div class="wrap">
+      <div class="block-head reveal">
+        <div>
+          <h2>Взрослым</h2>
+          <p class="sub">Экзамены, переезд, работа, резюме, собеседования и разговорная практика. Никакого “зазубрить и бояться”.</p>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="panel reveal">
+          <h3>Переезд / работа</h3>
+          <ul class="list">
+            <li>Немецкий под реальные ситуации: звонки, письма, анкеты, бытовые диалоги.</li>
+            <li>Понятные шаблоны и фразы, которые можно сразу использовать в жизни.</li>
+            <li>Поддержка и маршрут: что учить, чтобы это работало.</li>
+			  <li>Подготовка к международным экзаменам: готовимся и сдаем с первого раза</li>
+          </ul>
+          <div class="actions-row">
+          
+            <a class="btn btn-primary" href="#" data-placeholder="courses">Курсы</a>
+            <a class="btn btn-soft" href="#" data-placeholder="materials">Бесплатные материалы</a>
+          </div>
+        </div>
+
+        <div class="panel reveal">
+          <h3>Разговорный клуб</h3>
+          <ul class="list">
+            <li>Deutsch mit Kaffee: говорить проще, чем кажется.</li>
+            <li>Темы “для жизни”: работа, город, люди, планы, привычки.</li>
+          <li>Тёплая атмосфера, но с результатом.</li>
+		  <li>Литературная страничка для тех, кто любит книги.</li>
+          </ul>
+          <div class="actions-row">
+           
+            <a class="btn btn-primary" href="#" data-placeholder="club">Разговорный клуб</a>
+            <a class="btn btn-ghost" href="#contacts">Записаться / спросить</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section id="reviews">
+    <div class="wrap">
+      <div class="block-head reveal">
+        <div>
+          <h2>Отзывы</h2>
+   
+        </div>
+      </div>
+
+      <div class="panel reveal">
+        <div class="tabs" role="tablist" aria-label="Фильтр отзывов">
+          <button class="tab active" data-tab="kids" role="tab" aria-selected="true">Дети</button>
+          <button class="tab" data-tab="adults" role="tab" aria-selected="false">Взрослые</button>
+          <span style="margin-left:auto; opacity:.78; font-weight:700; font-size:13px;">
+     
+          </span>
+        </div>
+
+        <div class="reviews" id="reviewsGrid" aria-live="polite"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="wrap">
+      <div class="block-head reveal">
+        <div>
+          <h2>Обо мне</h2>
+   
+        </div>
+      </div>
+
+      <div class="about">
+        <div class="panel reveal">
+          <p class="big">
+            Я Фрау Анна — преподаватель немецкого. Помогаю семьям подготовиться к переезду в Германию: детям — через игру, взрослым — через практику для жизни и работы.
+
+Deutsch ohne Stress — это про ясность, поддержку и реальный результат.
+          </p>
+          <div class="mini-cards">
+            <div class="mini">
+              <p class="k">Формат</p>
+              <p class="v">уроки • игры • разговорная практика • материалы</p>
+            </div>
+            <div class="mini">
+              <p class="k">Фокус</p>
+              <p class="v">жизнь в Германии • работа • уверенная речь</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel reveal">
+          <h3>Deutsch mit Kaffee</h3>
+          <ul class="list">
+            <li>Разговорный клуб.</li>
+            <li>Без “идеальности”: говорим много, растём быстро.</li>
+            <li>Подходит тем, кто понимает, но молчит.</li>
+          </ul>
+          <div class="actions-row">
+            <a class="btn btn-primary" href="#" data-placeholder="coffee">Ссылка на клуб</a>
+            <a class="btn btn-soft" href="#contacts">Написать мне</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTS -->
+  <section id="contacts">
+    <div class="wrap">
+      <div class="block-head reveal">
+        <div>
+          <h2>Контакты</h2>
+          <p class="sub">Напиши, кто ты и что нужно: ребёнку игры/уроки или тебе работа/переезд — и я подскажу маршрут.</p>
+        </div>
+      </div>
+
+      <div class="contacts">
+        <div class="panel reveal">
+          <h3>Где мне написать</h3>
+
+          <div class="contact-list">
+            <div class="contact">
+              <p class="label">VK</p>
+              <a href="https://vk.com/frauanna" target="_blank" rel="noopener">vk.com/frauanna</a>
+            </div>
+
+            <div class="contact">
+              <p class="label">Telegram</p>
+              <a href="https://t.me/frauanna_klub" target="_blank" rel="noopener">@frauanna_klub</a>
+            </div>
+
+            <div class="contact">
+              <p class="label">Max</p>
+              <a href="https://max.ru/join/CBWBUI7JDH8q5ufjEk3FO8Qlc96E9VhObgvh4G8IVXk" target="_blank" rel="noopener">
+                max.ru/join/…
+              </a>
+            </div>
+
+            <div class="contact">
+              <p class="label">Email</p>
+              <a href="mailto:frauanna@internet.ru">frauanna@internet.ru</a>
+            </div>
+          </div>
+
+          <div class="actions-row" style="margin-top:16px;">
+            <a class="btn btn-primary" href="https://t.me/frauanna_klub" target="_blank" rel="noopener">Написать в Telegram</a>
+            <a class="btn btn-soft" href="https://vk.com/frauanna" target="_blank" rel="noopener">Написать в VK</a>
+          </div>
+        </div>
+
+        <div class="panel reveal">
+          <h3>Остались вопросы?</h3>
+          <p style="margin:0; line-height:1.7; opacity:.9;">
+            1) Напиши: <b>“дети”</b> или <b>“взрослые”</b><br>
+            2) Укажи уровень (если знаешь)<br>
+            3) И цель: “игры/уроки” или “работа/переезд/резюме”
+          </p>
+          <div class="actions-row">
+            <a class="btn btn-primary" href="#top">Наверх</a>
+            <a class="btn btn-ghost" href="#reviews">Отзывы</a>
+          </div>
+          <p style="margin:12px 0 0; font-size:13px; opacity:.78;">
+            
+          </p>
+        </div>
+      </div>
+
+      <footer class="wrap">
+        © <span id="year"></span> ФРАУ АННА • немецкий для жизни в Германии
+      </footer>
+    </div>
+  </section>
+
+  <script>
+    // ======= Easy edit links (placeholders) =======
+  
+    const LINKS = {
+      courses: "#",   // сюда: курс/запись
+      club: "#",      // сюда: разговорный клуб
+      materials: "#", // сюда: бесплатные материалы
+      coffee: "#"     // сюда: ссылка на Deutsch mit Kaffee
+    };
+
+    document.querySelectorAll("[data-placeholder]").forEach(a => {
+      const key = a.getAttribute("data-placeholder");
+      if (LINKS[key] && LINKS[key] !== "#") a.href = LINKS[key];
+    });
+
+    // ======= Mobile menu =======
+    const menuBtn = document.getElementById("menuBtn");
+    const nav = document.getElementById("siteNav");
+    if (menuBtn && nav){
+      menuBtn.addEventListener("click", () => {
+        const open = nav.classList.toggle("open");
+        menuBtn.setAttribute("aria-expanded", String(open));
+      });
+
+      // close on click
+      nav.addEventListener("click", (e) => {
+        if (e.target.tagName === "A" && nav.classList.contains("open")){
+          nav.classList.remove("open");
+          menuBtn.setAttribute("aria-expanded", "false");
+        }
+      });
+    }
+
+    // ======= Reveal on scroll =======
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(ent => {
+        if(ent.isIntersecting) ent.target.classList.add("show");
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+
+    // ======= Reviews (kids/adults) =======
+    const REVIEWS = {
+      kids: [
+        { text: "Ребёнок ждёт занятия и сам просит включить игры. Наконец-то немецкий без уговоров.", who: "Мама, 7 лет", where: "уроки + игры" },
+        { text: "Очень понравилось, что всё коротко и ярко. После урока ребёнок повторяет слова в быту.", who: "Папа, 6 лет", where: "мини-занятия" },
+        { text: "Песенки — находка. Запоминается на лету, и дома потом напевает.", who: "Мама, 5 лет", where: "песни" }
+      ],
+      adults: [
+        { text: "Стало проще говорить: больше не зависаю на каждом предложении. Пошёл прогресс.", who: "Студент", where: "разговорная практика" },
+        { text: "Наконец разобралась с резюме и базовыми письмами. Теперь понимаю, что писать работодателю.", who: "Студентка", where: "работа/переезд" },
+        { text: "Удобно, что всё просто и самое нужное: фразы, шаблоны, ситуации. Без воды.", who: "Студент", where: "курс" }
+      ]
+    };
+
+    const grid = document.getElementById("reviewsGrid");
+    const tabs = document.querySelectorAll(".tab");
+
+    function renderReviews(kind){
+      if(!grid) return;
+      grid.innerHTML = "";
+      (REVIEWS[kind] || []).forEach(r => {
+        const div = document.createElement("div");
+        div.className = "quote";
+        div.innerHTML = `
+          <p class="q">“${escapeHtml(r.text)}”</p>
+          <div class="meta">
+            <span>${escapeHtml(r.who)}</span>
+            <span>${escapeHtml(r.where)}</span>
+          </div>
+        `;
+        grid.appendChild(div);
+      });
+    }
+
+    function escapeHtml(s){
+      return String(s)
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+    }
+
+    tabs.forEach(t => {
+      t.addEventListener("click", () => {
+        tabs.forEach(x => x.classList.remove("active"));
+        tabs.forEach(x => x.setAttribute("aria-selected", "false"));
+        t.classList.add("active");
+        t.setAttribute("aria-selected", "true");
+        renderReviews(t.dataset.tab);
+      });
+    });
+
+    renderReviews("kids");
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
